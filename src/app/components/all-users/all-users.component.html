@@ -1,0 +1,58 @@
+<app-admin-menu></app-admin-menu>
+
+<div class="container mt-4">
+  <h2 class="text-center page-title">All Users</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>USERNAME</th>
+          <th>PASSWORD</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EMAIL</th>
+          <th>ROLE</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <td class="tooltip-cell">
+            {{ user.username }}
+            <span class="custom-tooltip">{{ user.username }}</span>
+          </td>
+          <td class="tooltip-cell">
+            {{ user.password | hidePassword }}
+            <span class="custom-tooltip">{{ user.password }}</span>
+          </td>
+          <td class="tooltip-cell">
+            {{ user.firstName | titlecase }}
+            <span class="custom-tooltip">{{ user.firstName }}</span>
+          </td>
+          <td class="tooltip-cell">
+            {{ user.lastName }}
+            <span class="custom-tooltip">{{ user.lastName }}</span>
+          </td>
+          <td class="tooltip-cell">
+            {{ user.email }}
+            <span class="custom-tooltip">{{ user.email }}</span>
+          </td>
+          <td class="tooltip-cell">
+            {{ user.role }}
+            <span class="custom-tooltip">{{ user.role }}</span>
+          </td>
+          <td>
+            <button (click)="deleteUser(user.username)" class="btn btn-danger">
+              Delete
+            </button>
+            <a class="btn btn-success" [routerLink]="['/edit-user', user.username]">
+              Edit
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

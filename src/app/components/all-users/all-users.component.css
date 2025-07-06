@@ -1,0 +1,131 @@
+/* General Layout */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffaf3;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2a3d66;
+  margin-bottom: 25px;
+}
+
+/* Table Styling */
+.table {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.table thead {
+  background-color: #2a3d66 !important;
+  color: #fff;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.95rem;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover Effect with Tooltip */
+.table td:hover {
+  background-color: #fcefdc;
+  cursor: pointer;
+}
+
+.table td::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2a3d66;
+  color: white;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 100;
+}
+
+.table td:hover::after {
+  opacity: 1;
+}
+
+/* Button Styling */
+.btn {
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-success {
+  background-color: #2ecc71;
+  border: none;
+  margin-left: 8px;
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+/* Container */
+.container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.tooltip-cell {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.tooltip-cell:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
