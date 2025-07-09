@@ -91,3 +91,20 @@
     width: 100%;
   }
 }
+/* Ensures mobile layout looks clean and centered */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    width: 100%;
+  }
+
+  .logout-btn {
+    width: 90%;
+    margin: 10px auto 0;
+  }
+}
