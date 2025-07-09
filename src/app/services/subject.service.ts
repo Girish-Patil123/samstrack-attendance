@@ -23,5 +23,8 @@ export class SubjectService {
   getSubject(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/get-subject-by-id/${id}`);
   }
+  updateSubject(subject: any): Observable<any> {
+  return this.http.put(`${this.baseUrl}/update-subject`, subject);
+}
 
 }

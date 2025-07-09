@@ -13,62 +13,134 @@
     <div class="container">
       <h2 class="form-title text-center">Add New User</h2>
 
-      <form>
-        <div class="row">
-          <!-- Left Section -->
-          <div class="col-md-6">
-            <!-- Username -->
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" [(ngModel)]="user.username">
-            </div>
+      <form #form="ngForm" (ngSubmit)="addUser()" novalidate>
+  <div class="row">
+    <!-- Left Section -->
+    <div class="col-md-6">
 
-            <!-- Password -->
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" [(ngModel)]="user.password">
-            </div>
-
-            <!-- First Name -->
-            <div class="mb-3">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName" [(ngModel)]="user.firstName">
-            </div>
-          </div>
-
-          <!-- Right Section -->
-          <div class="col-md-6">
-            <!-- Last Name -->
-            <div class="mb-3">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName" [(ngModel)]="user.lastName">
-            </div>
-
-            <!-- Email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="user.email">
-            </div>
-
-            <!-- Role Dropdown -->
-            <div class="mb-3">
-              <label for="role" class="form-label">Role</label>
-              <select class="form-select" id="role" name="role" [(ngModel)]="user.role">
-                <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="faculty">Faculty</option>
-              </select>
-            </div>
-          </div>
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" 
+               class="form-control" 
+               id="username" 
+               name="username"
+               placeholder="Enter username" 
+               [(ngModel)]="user.username"
+               required
+               minlength="3"
+               #username="ngModel">
+        <div *ngIf="username.invalid && username.touched" class="text-danger small mt-1">
+          <div *ngIf="username.errors?.['required']">Username is required.</div>
+          <div *ngIf="username.errors?.['minlength']">Minimum 3 characters required.</div>
         </div>
+      </div>
 
-        <!-- Submit Button (Full Width) -->
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <button type="submit" (click)="addUser()" class="btn btn-primary w-100">Add User</button>
-          </div>
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" 
+               class="form-control" 
+               id="password" 
+               name="password"
+               placeholder="Enter password" 
+               [(ngModel)]="user.password"
+               required
+               minlength="4"
+               #password="ngModel">
+        <div *ngIf="password.invalid && password.touched" class="text-danger small mt-1">
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">Minimum 4 characters required.</div>
         </div>
-      </form>
+      </div>
+
+      <!-- First Name -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" 
+               class="form-control" 
+               id="firstName" 
+               name="firstName"
+               placeholder="Enter first name" 
+               [(ngModel)]="user.firstName"
+               required
+               #firstName="ngModel">
+        <div *ngIf="firstName.invalid && firstName.touched" class="text-danger small mt-1">
+          <div *ngIf="firstName.errors?.['required']">First name is required.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-md-6">
+
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" 
+               class="form-control" 
+               id="lastName" 
+               name="lastName"
+               placeholder="Enter last name" 
+               [(ngModel)]="user.lastName"
+               required
+               #lastName="ngModel">
+        <div *ngIf="lastName.invalid && lastName.touched" class="text-danger small mt-1">
+          <div *ngIf="lastName.errors?.['required']">Last name is required.</div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" 
+               class="form-control" 
+               id="email" 
+               name="email"
+               placeholder="Enter email" 
+               [(ngModel)]="user.email"
+               required
+               email
+               #email="ngModel">
+        <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
+        </div>
+      </div>
+
+      <!-- Role Dropdown -->
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select class="form-select" 
+                id="role" 
+                name="role"
+                [(ngModel)]="user.role"
+                required
+                #role="ngModel">
+          <option value="">Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="faculty">Faculty</option>
+        </select>
+        <div *ngIf="role.invalid && role.touched" class="text-danger small mt-1">
+          Role is required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button (Full Width) -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button type="submit" 
+              class="btn btn-primary w-100"
+              [disabled]="form.invalid">
+        Add User
+      </button>
+    </div>
+  </div>
+</form>
+
     </div>
   </div>
 
