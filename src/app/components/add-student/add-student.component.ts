@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -14,16 +14,27 @@ export class AddStudentComponent {
     email: ''
   };
 
-  addStudent() {
-    this.studentService.addStudent(this.student).subscribe((res) => {
-      if (res) {
-        this.student.email='';
-        this.student.name='';
-        alert('Student added successfully');
-      } else {
-        alert('Failed to add student');
-      }
-    });
+addStudent() {
+  this.studentService.addStudent(this.student).subscribe((res) => {
+    if (res) {
+      this.student.email = '';
+      this.student.name = '';
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Added!',
+        text: 'Student added successfully',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed!',
+        text: 'Failed to add student',
+      });
+    }
+  });
 
   }
 }
