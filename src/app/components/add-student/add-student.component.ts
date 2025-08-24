@@ -27,7 +27,7 @@ addStudent() {
         text: 'Student added successfully',
         showConfirmButton: false,
         timer: 2000
-      });.then(() => {
+      }).then(() => {
           this.router.navigate(['/all-student']); // ✅ redirect after alert
         });
     } else {
