@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router'; 
+ 
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -27,9 +27,7 @@ addStudent() {
         text: 'Student added successfully',
         showConfirmButton: false,
         timer: 2000
-      }).then(() => {
-          this.router.navigate(['/all-students']); // ✅ redirect after alert
-        });
+      });
     } else {
       Swal.fire({
         icon: 'error',
