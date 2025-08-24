@@ -28,7 +28,7 @@ addStudent() {
         showConfirmButton: false,
         timer: 2000
       }).then(() => {
-          this.router.navigate(['/all-student']); // ✅ redirect after alert
+          this.router.navigate(['/all-students']); // ✅ redirect after alert
         });
     } else {
       Swal.fire({
